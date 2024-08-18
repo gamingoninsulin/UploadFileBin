@@ -6,6 +6,7 @@ import logging
 # Set up logging
 logging.basicConfig(filename='console.log', level=logging.INFO, format='%(asctime)s - %(message)s')
 
+
 def check_and_install_requirements():
     if os.path.isfile('requirements.txt'):
         logging.info('requirements.txt found. Installing requirements...')
@@ -13,6 +14,7 @@ def check_and_install_requirements():
         logging.info('Requirements installed successfully.')
     else:
         logging.warning('requirements.txt not found.')
+
 
 def run_upload_script():
     if os.path.isfile('upload_to_filebin.py'):
@@ -24,6 +26,7 @@ def run_upload_script():
             logging.error(f'Error running upload_to_filebin.py: {e}')
     else:
         logging.warning('upload_to_filebin.py not found.')
+
 
 if __name__ == "__main__":
     while True:

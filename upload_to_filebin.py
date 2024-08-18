@@ -104,6 +104,17 @@ if __name__ == "__main__":
     zip_dir = os.path.join(main_dir, 'zip')
     print(f"Zip directory: {zip_dir}")
 
+    # Ensure the zip directory exists
+    if not os.path.exists(zip_dir):
+        os.makedirs(zip_dir)
+        print(f"Created zip directory: {zip_dir}")
+
+    # Check if there are any zip files in the directory
+    zip_files = [f for f in os.listdir(zip_dir) if f.endswith('.zip') and '-DONE' not in f]
+    if not zip_files:
+        print(f"No zip files found in {zip_dir}. Program will terminate.")
+        exit()
+
     try:
         # Ensure the chromedriver directory exists
         chromedriver_dir = os.path.join(main_dir, 'chromedriver')
@@ -138,7 +149,6 @@ if __name__ == "__main__":
         driver = webdriver.Chrome(options=chrome_options)
 
         # Loop through all zip files and upload them
-        zip_files = [f for f in os.listdir(zip_dir) if f.endswith('.zip') and '-DONE' not in f]
         print(f"Zip files to process: {zip_files}")
 
         for zip_file in zip_files:
